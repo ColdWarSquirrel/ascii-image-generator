@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to ASCII Art</title>
+    <meta property="og:title" content="Image to ASCII Art" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="converts any given image to ASCII (primitive text) art" />
+    <meta property="og:url" content="https://thesomething.uk/ascii/" />
+    <style>
+        *{
+            color:white;
+            margin-left:15px;
+        }
+        @font-face {
+            font-family: 'jgs7';
+            src: url('fonts/jgs7.woff2') format('woff2'),
+                url('fonts/jgs7.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        body,html{
+            margin:0;
+            padding:0;
+            background-color: black;
+        }
+        body{
+            padding-top:15px;
+            padding-left:15px;
+        }
+        #output{
+            /*font-family: 'jgs7';*/
+            margin:0px;
+            background-color: black;
+            border:1px solid white;
+            border-radius:10px;
+            border-top-left-radius: 0px;
+            padding:5px;
+            color:white;
+            text-align:center;
+            width:fit-content;
+            height:fit-content;
+        }
+        #imgPreview{
+            /*font-family: 'jgs7';*/
+            margin:0px;
+            background-color: black;
+            border:1px solid white;
+            border-radius:10px;
+            border-bottom-left-radius: 0px;
+            color:white;
+            text-align:center;
+            width:fit-content;
+            height:fit-content;
+        }
+        input,select,option{
+            background-color: black;
+            color:white;
+        }
+        input[type=button]{
+            border:1px solid white;
+        }
+        .asciiChar{
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+    <span id="inputs">
+        <label for="fileInput">image to convert: </label><input type="file" name="fileInput" id="fileInput"><br>
+        <canvas id="imgPreview" width="100" height="100"></canvas><br>
+        <label for="width">width: </label><input type="number" min="1" max="750" value="60" name="width" id="width"><br>
+        <label for="inverse">invert: </label><input type="checkbox" name="inverse" id="inverse"><br>
+        <label for="usealpha">use alpha: </label><input type="checkbox" name="usealpha" id="usealpha"><br>
+        <label for="usecolour">use colour (slow): </label><input type="checkbox" name="usecolour" id="usecolour"><br>
+        <label for="font_size">font size: </label><input type="number" min="1" max="48" value="13" name="font_size" id="font_size"><br>
+        <div id="charLimitStuff" style="display:none;">
+            <label for="useCharLimit">use character limit: </label><input type="checkbox" name="useCharLimit" id="useCharLimit"><br>
+            <div id="charLimitContainer" style="display:none;">
+                <label for="charLimit">character limit: </label><input type="number" min="1" max="750000" value="2000" name="charLimit" id="charLimit">
+            </div>
+        </div>
+        <div id="errorMsg" style="color:red; display:none;">file unsupported!</div>
+    </span><br>
+    <span id="additionalInfo"></span><br>
+    <pre id="output"></pre>
+    <input type="button" id="download" value="download"><select name="downloadType" id="downloadType">
+        <option value="html" selected>HTML</option>
+        <option value="plain">Plaintext</option>
+    </select>
+    <script src="index.js"></script>
+</body>
+</html>
